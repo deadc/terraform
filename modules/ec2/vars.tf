@@ -2,7 +2,6 @@ variable "app_name" {}
 variable "subnet_id" {}
 variable "vpc_id" {}
 variable "key_pair" {}
-variable "availability_zone" {}
 
 variable "instance_type" {
   default = "t2.small"

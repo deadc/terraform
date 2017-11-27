@@ -4,7 +4,7 @@ provider "aws" {
 
 terraform {
   backend "s3" {
-    bucket = "prd-tfstate"
+    bucket = "prd-dc-terraform"
     key    = "network/vpc"
     region = "us-east-1"
   }
