@@ -23,4 +23,3 @@ output "key_pair" {
 output "default_security_groups" {
   value = []
 }
-

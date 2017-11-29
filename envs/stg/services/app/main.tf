@@ -15,12 +15,13 @@ module "environment" {
 }
 
 data "terraform_remote_state" "shared" {
-    backend = "s3"
-    config {
-        bucket = "stg-dc-terraform"
-        key    = "network/vpc"
-        region = "us-east-1"
-    }
+  backend = "s3"
+
+  config {
+    bucket = "stg-dc-terraform"
+    key    = "network/vpc"
+    region = "us-east-1"
+  }
 }
 
 module "ec2" {
