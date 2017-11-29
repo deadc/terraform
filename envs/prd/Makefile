@@ -3,7 +3,9 @@
 
 ACTION = plan
 
-all: vpc
+create: vpc ec2
+
+clean: ec2 vpc
 
 init:
 	terraform init
@@ -12,7 +14,7 @@ plan: init
 	terraform plan
 
 apply: init
-	terraform apply
+	terraform apply -auto-approve
 
 destroy: init
 	terraform destroy

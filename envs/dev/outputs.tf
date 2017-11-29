@@ -24,6 +24,3 @@ output "default_security_groups" {
   value = []
 }
 
-output "availability_zone" {
-  value = "us-east-1a"
-}
