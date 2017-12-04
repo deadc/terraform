@@ -4,8 +4,8 @@ provider "aws" {
 
 terraform {
   backend "s3" {
-    bucket = "prd-dc-terraform"
-    key    = "services/app"
+    bucket = "stg-dc-terraform"
+    key    = "services/app-asg"
     region = "us-east-1"
   }
 }
@@ -18,27 +18,19 @@ data "terraform_remote_state" "shared" {
   backend = "s3"
 
   config {
-    bucket = "prd-dc-terraform"
+    bucket = "stg-dc-terraform"
     key    = "network/vpc"
     region = "us-east-1"
   }
 }
 
-module "ec2" {
-  source                  = "../../../../modules/ec2"
-  app_name                = "app"
+module "asg" {
+  source                  = "../../../../modules/asg"
+  app_name                = "appasg"
   environment             = "${module.environment.environment}"
   key_pair                = "${module.environment.key_pair}"
-  subnet_id               = "${element(split(",", data.terraform_remote_state.shared.private_subnets), 0)}"
+  elb_subnets             = "${split(",", data.terraform_remote_state.shared.public_subnets)}"
+  asg_subnets             = "${split(",", data.terraform_remote_state.shared.private_subnets)}"
   vpc_id                  = "${data.terraform_remote_state.shared.vpc_id}"
   default_security_groups = "${module.environment.default_security_groups}"
-}
-
-module "route53" {
-  source = "../../../../modules/route53"
-
-  dns_entry  = "app"
-  zone_name  = "${module.environment.client_name}"
-  zone_id    = "${data.terraform_remote_state.shared.zone_id}"
-  ip_address = "${module.ec2.ec2_generic_instance_ip}"
 }

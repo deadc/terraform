@@ -17,7 +17,9 @@ module "environment" {
 module "vpc" {
   source = "../../../../modules/vpc"
 
-  vpc_name = "${module.environment.vpc_name}"
-  cidr_vpc = "${module.environment.cidr_vpc}"
-  region   = "${module.environment.region}"
+  zone_name   = "cliente-rivendel"
+  vpc_name    = "${module.environment.vpc_name}"
+  environment = "${module.environment.environment}"
+  cidr_vpc    = "${module.environment.cidr_vpc}"
+  region      = "${module.environment.region}"
 }

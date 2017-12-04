@@ -32,6 +32,10 @@ variable "rds_instance_type" {
   default = "db.t2.micro"
 }
 
+variable "rds_multi_az" {
+  default = true
+}
+
 variable "rds_parameter_group" {
   default = "default.mysql5.6"
 }

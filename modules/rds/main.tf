@@ -43,7 +43,7 @@ resource "aws_db_instance" "rds_generic" {
   identifier                = "${var.environment}-${var.app_name}-db"
   username                  = "admin"
   password                  = "${random_string.password.result}"
-  multi_az                  = "True"
+  multi_az                  = "${var.rds_multi_az}"
   db_subnet_group_name      = "${aws_db_subnet_group.generic_sgn.id}"
   parameter_group_name      = "${aws_db_parameter_group.mysql56_pg.name}"
   skip_final_snapshot       = "${var.rds_skip_final_snapshot}"

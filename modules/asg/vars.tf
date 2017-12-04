@@ -15,7 +15,7 @@ variable "asg_minsize" {
 }
 
 variable "asg_maxsize" {
-  default = 3
+  default = 2
 }
 
 variable "aws_amis" {

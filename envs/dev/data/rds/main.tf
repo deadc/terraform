@@ -19,7 +19,7 @@ data "terraform_remote_state" "shared" {
 
   config {
     bucket = "dev-dc-terraform"
-    key    = "network/vpc"
+    key    = "network/data"
     region = "us-east-1"
   }
 }

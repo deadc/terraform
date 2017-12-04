@@ -6,6 +6,10 @@ output "region" {
   value = "us-east-1"
 }
 
+output "client_name" {
+  value = "cliente-rivendel"
+}
+
 output "vpc_name" {
   value = "vpc-dev"
 }
