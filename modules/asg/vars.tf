@@ -46,6 +46,10 @@ variable "elb_subnets" {
   type = "list"
 }
 
+variable "elb_internal" {
+  default = false
+}
+
 variable "asg_subnets" {
   type = "list"
 }

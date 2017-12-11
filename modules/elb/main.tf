@@ -89,6 +89,7 @@ resource "aws_elb" "generic_elb_web" {
   name            = "aws-${var.environment}-${var.app_name}-elb"
   subnets         = ["${var.elb_subnets}"]
   security_groups = ["${aws_security_group.elb_security_group.id}"]
+  internal        = "${var.elb_internal}"
 
   listener {
     instance_port     = 3000

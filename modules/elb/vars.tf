@@ -7,6 +7,10 @@ variable "elb_subnets" {
   type = "list"
 }
 
+variable "elb_internal" {
+  default = false
+}
+
 variable "instance_type" {
   default = "t2.small"
 }
