@@ -17,7 +17,7 @@ module "environment" {
 module "vpc" {
   source = "../../../../modules/vpc"
 
-  zone_name   = "${module.environment.client_name}"
+  zone_name   = "${var.client_name == "" ?  module.environment.client_name : var.client_name}"
   vpc_name    = "${module.environment.vpc_name}"
   environment = "${module.environment.environment}"
   cidr_vpc    = "${module.environment.cidr_vpc}"
