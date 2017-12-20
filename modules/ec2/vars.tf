@@ -15,6 +15,10 @@ variable "public_ip" {
   default = false
 }
 
+variable "attach_eip" {
+  default = false
+}
+
 variable "aws_amis" {
   type = "map"
 
@@ -38,4 +42,3 @@ variable "number_of_instances" {
 variable "default_security_groups" {
   type = "list"
 }
-

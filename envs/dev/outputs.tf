@@ -2,6 +2,18 @@ output "environment" {
   value = "dev"
 }
 
+output "app_name" {
+  value = "app"
+}
+
+output "public_ip" {
+  value = "false"
+}
+
+output "attach_eip" {
+  value = "false"
+}
+
 output "region" {
   value = "us-east-1"
 }

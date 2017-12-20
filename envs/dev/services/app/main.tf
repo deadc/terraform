@@ -26,20 +26,22 @@ data "terraform_remote_state" "shared" {
 
 module "ec2" {
   source                  = "../../../../modules/ec2"
-  app_name                = "app"
+  app_name                = "${var.app_name == "" ?  module.environment.app_name : var.app_name}"
   environment             = "${module.environment.environment}"
   key_pair                = "${module.environment.key_pair}"
-  subnet_id               = "${element(split(",", data.terraform_remote_state.shared.private_subnets), 0)}"
+  subnet_id               = "${element(split(",", "${var.public_ip ? data.terraform_remote_state.shared.public_subnets : data.terraform_remote_state.shared.private_subnets}"), 0)}"
   vpc_id                  = "${data.terraform_remote_state.shared.vpc_id}"
   default_security_groups = "${module.environment.default_security_groups}"
+  public_ip               = "${var.public_ip ? var.public_ip : module.environment.public_ip}"
+  attach_eip              = "${var.attach_eip ? var.attach_eip : module.environment.attach_eip}"
 }
 
 module "route53" {
   source = "../../../../modules/route53"
 
-  dns_entry   = "app"
+  dns_entry   = "${var.app_name == "" ?  module.environment.app_name : var.app_name}"
   environment = "${module.environment.environment}"
   zone_name   = "${module.environment.client_name}"
   zone_id     = "${data.terraform_remote_state.shared.zone_id}"
-  ip_address  = "${module.ec2.ec2_generic_instance_ip}"
+  ip_address  = "${module.ec2.private_ip}"
 }
