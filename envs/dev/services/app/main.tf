@@ -29,7 +29,7 @@ module "ec2" {
   app_name                = "${var.app_name == "" ?  module.environment.app_name : var.app_name}"
   environment             = "${module.environment.environment}"
   key_pair                = "${module.environment.key_pair}"
-  subnet_id               = "${element(split(",", "${var.public_ip ? data.terraform_remote_state.shared.public_subnets : data.terraform_remote_state.shared.private_subnets}"), 0)}"
+  subnet_id               = "${element(split(",", "${"${var.attach_eip ? var.attach_eip : var.public_ip}" ? data.terraform_remote_state.shared.public_subnets : data.terraform_remote_state.shared.private_subnets}"), 0)}"
   vpc_id                  = "${data.terraform_remote_state.shared.vpc_id}"
   default_security_groups = "${module.environment.default_security_groups}"
   public_ip               = "${var.public_ip ? var.public_ip : module.environment.public_ip}"

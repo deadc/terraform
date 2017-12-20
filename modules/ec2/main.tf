@@ -49,7 +49,7 @@ resource "aws_instance" "ec2_generic_instance" {
   key_name                    = "${var.key_pair}"
   subnet_id                   = "${var.subnet_id}"
   instance_type               = "${var.instance_type}"
-  associate_public_ip_address = "${var.public_ip}"
+  associate_public_ip_address = "${var.attach_eip ? var.attach_eip : var.public_ip}"
   iam_instance_profile        = "${aws_iam_instance_profile.default_instance_profile.id}"
 
   vpc_security_group_ids = [
