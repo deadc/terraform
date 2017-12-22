@@ -13,3 +13,7 @@ output "private_subnets" {
 output "public_subnets" {
   value = "${module.vpc.public_subnets}"
 }
+
+output "vpc_security_group" {
+  value = "${module.vpc.vpc_security_group}"
+}

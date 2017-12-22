@@ -21,7 +21,7 @@ output "cidr_vpc" {
 # + EC2 Module
 
 output "key_pair" {
-  value = "test"
+  value = "dc-labs"
 }
 
 output "default_security_groups" {

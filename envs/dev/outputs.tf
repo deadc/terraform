@@ -14,6 +14,10 @@ output "attach_eip" {
   value = "false"
 }
 
+output "allow_ssh" {
+  value = "false"
+}
+
 output "region" {
   value = "us-east-1"
 }
@@ -33,7 +37,7 @@ output "cidr_vpc" {
 # + EC2 Module
 
 output "key_pair" {
-  value = "test"
+  value = "dc-labs"
 }
 
 output "default_security_groups" {

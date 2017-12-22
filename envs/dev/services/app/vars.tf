@@ -9,3 +9,7 @@ variable "public_ip" {
 variable "attach_eip" {
   default = false
 }
+
+variable "allow_ssh" {
+  default = false
+}

@@ -96,3 +96,18 @@ resource "aws_route53_zone" "main_zone" {
   name   = "${var.environment}.${var.zone_name}.internal"
   vpc_id = "${aws_vpc.vpc.id}"
 }
+
+resource "aws_security_group" "vpc_security_group" {
+  name   = "aws-${var.vpc_name}-vpc-sg"
+  vpc_id = "${aws_vpc.vpc.id}"
+}
+
+resource "aws_security_group_rule" "allow_ssh_internal" {
+  type        = "ingress"
+  from_port   = 22
+  to_port     = 22
+  protocol    = "tcp"
+  cidr_blocks = ["${var.cidr_vpc}"]
+
+  security_group_id = "${aws_security_group.vpc_security_group.id}"
+}

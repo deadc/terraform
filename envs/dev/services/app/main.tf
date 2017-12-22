@@ -31,9 +31,10 @@ module "ec2" {
   key_pair                = "${module.environment.key_pair}"
   subnet_id               = "${element(split(",", "${"${var.attach_eip ? var.attach_eip : var.public_ip}" ? data.terraform_remote_state.shared.public_subnets : data.terraform_remote_state.shared.private_subnets}"), 0)}"
   vpc_id                  = "${data.terraform_remote_state.shared.vpc_id}"
-  default_security_groups = "${module.environment.default_security_groups}"
+  default_security_groups = ["${module.environment.default_security_groups}", "${data.terraform_remote_state.shared.vpc_security_group}"]
   public_ip               = "${var.public_ip ? var.public_ip : module.environment.public_ip}"
   attach_eip              = "${var.attach_eip ? var.attach_eip : module.environment.attach_eip}"
+  allow_ssh               = "${var.allow_ssh}"
 }
 
 module "route53" {

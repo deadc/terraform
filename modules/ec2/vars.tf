@@ -11,6 +11,10 @@ variable "environment" {
   default = "dev"
 }
 
+variable "allow_ssh" {
+  default = false
+}
+
 variable "public_ip" {
   default = false
 }
