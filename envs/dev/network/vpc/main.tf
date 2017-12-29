@@ -14,6 +14,13 @@ module "environment" {
   source = "../../"
 }
 
+module "keypair" {
+  source = "../../../../modules/keypair"
+
+  client_name = "${var.client_name == "" ?  module.environment.client_name : var.client_name}"
+  environment = "${var.environment == "" ?  module.environment.environment : var.environment}"
+}
+
 module "vpc" {
   source = "../../../../modules/vpc"
 

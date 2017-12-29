@@ -17,3 +17,15 @@ output "public_subnets" {
 output "vpc_security_group" {
   value = "${module.vpc.vpc_security_group}"
 }
+
+output "private_key_pem" {
+  value = "${module.keypair.private_key_pem}"
+}
+
+output "public_key_openssh" {
+  value = "${module.keypair.public_key_openssh}"
+}
+
+output "key_name" {
+  value = "${module.keypair.key_name}"
+}

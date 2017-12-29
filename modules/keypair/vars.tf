@@ -8,7 +8,7 @@ variable "environment" {
 
 variable "ssh_public_key_path" {
   description = "Path to Read/Write SSH Public Key File (directory)"
-  default     = "./"
+  default     = "."
 }
 
 variable "generate_ssh_key" {
