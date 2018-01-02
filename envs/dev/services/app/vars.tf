@@ -13,3 +13,7 @@ variable "attach_eip" {
 variable "allow_ssh" {
   default = false
 }
+
+variable "shared_bucket" {
+  default = "dev-dc-terraform"
+}

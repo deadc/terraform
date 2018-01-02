@@ -6,6 +6,10 @@ output "app_name" {
   value = "app"
 }
 
+output "shared_bucket" {
+  value = "dev-dc-terraform"
+}
+
 output "public_ip" {
   value = "false"
 }

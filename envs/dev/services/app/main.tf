@@ -18,7 +18,7 @@ data "terraform_remote_state" "shared" {
   backend = "s3"
 
   config {
-    bucket = "dev-dc-terraform"
+    bucket = "${var.shared_bucket == "" ? module.environment.shared_bucket : var.shared_bucket}"
     key    = "network/vpc"
     region = "us-east-1"
   }
